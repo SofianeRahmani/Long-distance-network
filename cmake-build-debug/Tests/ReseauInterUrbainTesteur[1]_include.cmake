@@ -1,0 +1,5 @@
+if(EXISTS "C:/temp/CodeTP2/cmake-build-debug/Tests/ReseauInterUrbainTesteur[1]_tests.cmake")
+  include("C:/temp/CodeTP2/cmake-build-debug/Tests/ReseauInterUrbainTesteur[1]_tests.cmake")
+else()
+  add_test(ReseauInterUrbainTesteur_NOT_BUILT ReseauInterUrbainTesteur_NOT_BUILT)
+endif()

@@ -1,0 +1,5 @@
+if(EXISTS "C:/temp/CodeTP2/cmake-build-debug/Tests/GrapheTesteur[1]_tests.cmake")
+  include("C:/temp/CodeTP2/cmake-build-debug/Tests/GrapheTesteur[1]_tests.cmake")
+else()
+  add_test(GrapheTesteur_NOT_BUILT GrapheTesteur_NOT_BUILT)
+endif()
