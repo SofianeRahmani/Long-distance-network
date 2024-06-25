@@ -17,6 +17,8 @@
 #include <vector>
 #include <list>
 #include <stack>
+#include <limits>
+#include <queue>
 //vous pouvez inclure d'autres librairies de la STL si vous pensez les utiliser
 
 
@@ -80,12 +82,11 @@ public:
 
     std::string getVilleName(size_t index) const;
 
-    void ordreEnfilage(size_t v, std::vector<bool>& visite, std::stack<size_t>& file) const;
 
 
 
 private:
-
+    void ordreEnfilage(size_t v, std::vector<bool>& visite, std::stack<size_t>& file) const;
 	Graphe unReseau;			//Le type ReseauRoutier est composé d'un graphe
 	std::string nomReseau;		//Le nom du reseau (exemple: Orleans Express)
 
