@@ -85,11 +85,13 @@ namespace TP2
         size_t dest = unReseau.getNumeroSommet(destination);
 
         std::vector<float> distances(unReseau.getNombreSommets(), std::numeric_limits<float>::max());
+        std::vector<float> costs(unReseau.getNombreSommets(), std::numeric_limits<float>::max());
         std::vector<size_t> precedents(unReseau.getNombreSommets(), -1);
         std::priority_queue<std::pair<float, size_t>, std::vector<std::pair<float, size_t>>, std::greater<std::pair<float, size_t>>> queue;
 
-        distances[source] = 0.0f;
-        queue.push({0.0f, source});
+        distances.at(source) = 0.0f;
+        costs.at(source) = 0.0f;
+        queue.emplace(0.0f, source);
 
         while (!queue.empty()) {
             size_t u = queue.top().second;
@@ -99,22 +101,34 @@ namespace TP2
 
             for (const auto& arc : unReseau.listerSommetsAdjacents(u)) {
                 size_t v = arc;
-                float weight = dureeCout ? unReseau.getPonderationsArc(u, v).duree : unReseau.getPonderationsArc(u, v).cout;
-                float distanceThroughU = distances[u] + weight;
+                Ponderations ponderations = unReseau.getPonderationsArc(u, v);
+                float durationThroughU = distances.at(u) + ponderations.duree;
+                float costThroughU = costs.at(u) + ponderations.cout;
 
-                if (distanceThroughU < distances[v]) {
-                    distances[v] = distanceThroughU;
-                    precedents[v] = u;
-                    queue.push({distances[v], v});
+                if (dureeCout) {
+                    if (durationThroughU < distances.at(v)) {
+                        distances.at(v) = durationThroughU;
+                        costs.at(v) = costThroughU;
+                        precedents.at(v) = u;
+                        queue.emplace(distances.at(v), v);
+                    }
+                } else {
+                    if (costThroughU < costs.at(v)) {
+                        distances.at(v) = durationThroughU;
+                        costs.at(v) = costThroughU;
+                        precedents.at(v) = u;
+                        queue.emplace(costs.at(v), v);
+                    }
                 }
             }
         }
 
         Chemin chemin;
-        chemin.dureeTotale = distances[dest];
-        chemin.reussi = distances[dest] != std::numeric_limits<float>::max();
+        chemin.dureeTotale = distances.at(dest);
+        chemin.coutTotal = costs.at(dest);
+        chemin.reussi = distances.at(dest) != std::numeric_limits<float>::max();
         if (chemin.reussi) {
-            for (size_t at = dest; at != -1; at = precedents[at]) {
+            for (size_t at = dest; at != -1; at = precedents.at(at)) {
                 chemin.listeVilles.push_back(unReseau.getNomSommet(at));
             }
             std::reverse(chemin.listeVilles.begin(), chemin.listeVilles.end());
