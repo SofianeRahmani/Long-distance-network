@@ -2,6 +2,6 @@
 # The patch step will be re-executed if anything in this file changes.
 # No other meaning or use of this file is supported.
 
-command (connected)=C:/Users/srahmani/AppData/Local/JetBrains/CLion 2023.3.2/bin/cmake/win/x64/bin/cmake.exe;-Dcan_fetch=YES;-P;C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-gitupdate.cmake
-command (disconnected)=C:/Users/srahmani/AppData/Local/JetBrains/CLion 2023.3.2/bin/cmake/win/x64/bin/cmake.exe;-Dcan_fetch=NO;-P;C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-gitupdate.cmake
-work_dir=C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-src
+command (connected)=C:/Users/srahmani/AppData/Local/JetBrains/CLion 2023.3.2/bin/cmake/win/x64/bin/cmake.exe;-Dcan_fetch=YES;-P;C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-gitupdate.cmake
+command (disconnected)=C:/Users/srahmani/AppData/Local/JetBrains/CLion 2023.3.2/bin/cmake/win/x64/bin/cmake.exe;-Dcan_fetch=NO;-P;C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-gitupdate.cmake
+work_dir=C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-src

@@ -156,7 +156,7 @@ rule CXX_EXECUTABLE_LINKER__ReseauInterUrbainTesteur_Debug
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = "C:\Users\srahmani\AppData\Local\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\temp\CodeTP2 -BC:\temp\CodeTP2\cmake-build-debug
+  command = "C:\Users\srahmani\AppData\Local\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\temp\Long-distance-network -BC:\temp\Long-distance-network\cmake-build-debug
   description = Re-running CMake...
   generator = 1
 

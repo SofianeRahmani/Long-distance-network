@@ -1,11 +1,11 @@
 /**
  * \file ReseauInterurbain.cpp
- * \brief Implémentattion de la classe ReseauInterurbain.
+ * \brief Implémentation de la classe ReseauInterurbain.
  * \author IFT-2008 & ?
  * \version 0.1
  * \date Juin-Juillet 2024
  *
- *  Travail pratique numéro 2
+ * Travail pratique numéro 2
  *
  */
 #include <sstream>
@@ -15,23 +15,34 @@
 
 namespace TP2
 {
-    ReseauInterurbain::ReseauInterurbain(std::string nomReseau, size_t nbVilles) : nomReseau(nomReseau), unReseau(nbVilles){}
+    /**
+     * \brief Constructeur de la classe ReseauInterurbain
+     * \param nomReseau Nom du réseau
+     * \param nbVilles Nombre de villes dans le réseau
+     */
+    ReseauInterurbain::ReseauInterurbain(std::string nomReseau, size_t nbVilles) : nomReseau(nomReseau), unReseau(nbVilles) {}
 
-    ReseauInterurbain::~ReseauInterurbain() {
+    /**
+     * \brief Destructeur de la classe ReseauInterurbain
+     */
+    ReseauInterurbain::~ReseauInterurbain() {}
 
-    }
-
-    void ReseauInterurbain::resize(size_t nouvelleTaille){
-        if(unReseau.getNombreSommets() == nouvelleTaille)
-        {
+    /**
+     * \brief Redimensionne le réseau
+     * \param nouvelleTaille Nouvelle taille du réseau
+     */
+    void ReseauInterurbain::resize(size_t nouvelleTaille) {
+        if (unReseau.getNombreSommets() == nouvelleTaille) {
             unReseau.resize(nouvelleTaille);
         }
-
     }
 
-    // Méthode fournie
-    void ReseauInterurbain::chargerReseau(std::ifstream & fichierEntree)
-    {
+    /**
+     * \brief Charge le réseau à partir d'un fichier
+     * \param fichierEntree Flux de fichier d'entrée
+     * \throws std::logic_error Si le fichier n'est pas ouvert
+     */
+    void ReseauInterurbain::chargerReseau(std::ifstream & fichierEntree) {
         if (!fichierEntree.is_open())
             throw std::logic_error("ReseauInterurbain::chargerReseau: Le fichier n'est pas ouvert !");
 
@@ -43,25 +54,23 @@ namespace TP2
         int nbVilles;
 
         fichierEntree >> nbVilles;
-        getline(fichierEntree, buff); //villes
+        getline(fichierEntree, buff); // villes
 
         unReseau.resize(nbVilles);
 
-        getline(fichierEntree, buff); //Liste des villes
+        getline(fichierEntree, buff); // Liste des villes
 
         size_t i = 0;
 
-        getline(fichierEntree, buff); //Premiere ville
+        getline(fichierEntree, buff); // Première ville
 
-        while(buff != "Liste des trajets:")
-        {
+        while (buff != "Liste des trajets:") {
             unReseau.nommer(i, buff);
             getline(fichierEntree, buff);
             i++;
         }
 
-        while(!fichierEntree.eof())
-        {
+        while (!fichierEntree.eof()) {
             getline(fichierEntree, buff);
             std::string source = buff;
             getline(fichierEntree, buff);
@@ -80,6 +89,13 @@ namespace TP2
         }
     }
 
+    /**
+     * \brief Recherche un chemin entre deux villes en utilisant l'algorithme de Dijkstra
+     * \param origine Ville de départ
+     * \param destination Ville d'arrivée
+     * \param dureeCout Indicateur pour choisir entre durée et coût
+     * \return Le chemin trouvé
+     */
     Chemin ReseauInterurbain::rechercheCheminDijkstra(const std::string& origine, const std::string& destination, bool dureeCout) const {
         size_t source = unReseau.getNumeroSommet(origine);
         size_t dest = unReseau.getNumeroSommet(destination);
@@ -136,6 +152,10 @@ namespace TP2
         return chemin;
     }
 
+    /**
+     * \brief Algorithme de Kosaraju pour trouver les composantes fortement connexes
+     * \return Un vecteur de vecteurs de noms de villes représentant les composantes fortement connexes
+     */
     std::vector<std::vector<std::string>> ReseauInterurbain::algorithmeKosaraju() {
         std::vector<std::vector<std::string>> composantes;
         std::stack<size_t> file;
@@ -170,6 +190,12 @@ namespace TP2
         return composantes;
     }
 
+    /**
+     * \brief Remplit la pile des sommets dans l'ordre des visites
+     * \param v Numéro du sommet
+     * \param visite Vecteur des sommets visités
+     * \param file Pile des sommets visités
+     */
     void ReseauInterurbain::ordreEnfilage(size_t v, std::vector<bool>& visite, std::stack<size_t>& file) const {
         visite[v] = true;
 
@@ -181,10 +207,20 @@ namespace TP2
         file.push(v);
     }
 
+    /**
+     * \brief Obtient l'index d'une ville
+     * \param ville Nom de la ville
+     * \return Index de la ville
+     */
     size_t ReseauInterurbain::getVilleIndex(const std::string& ville) const {
         return unReseau.getNumeroSommet(ville);
     }
 
+    /**
+     * \brief Obtient le nom d'une ville à partir de son index
+     * \param index Index de la ville
+     * \return Nom de la ville
+     */
     std::string ReseauInterurbain::getVilleName(size_t index) const {
         return unReseau.getNomSommet(index);
     }

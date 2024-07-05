@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-src"
-  "C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-build"
-  "C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix"
-  "C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp"
-  "C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
-  "C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src"
-  "C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
+  "C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-src"
+  "C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-build"
+  "C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix"
+  "C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/tmp"
+  "C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
+  "C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src"
+  "C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/temp/CodeTP2/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/temp/Long-distance-network/cmake-build-debug/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()
